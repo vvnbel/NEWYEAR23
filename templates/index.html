@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+    {% block base_01 %}
+<div class="jumbotron"><h1>WELC0ME1!</h1></div>
+    <img src={{url_for('static', filename='1.jpg')}} height="300">
+       <ul> {% for color in colors %}
+           <li>{{color}}</li>
+        {% endfor %}
+        {% if 'red' in colors %}
+           <p>RED IN LIST</p>
+           {% else %}
+           <p>RED NOT IN LIST</p>
+           {% endif %}
+       </ul>
+    {% endblock %}
