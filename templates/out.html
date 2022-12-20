@@ -1,0 +1,9 @@
+<p>Выберите файл:</p>
+<p><input type="search" list="character">
+  <datalist id="character">
+
+  {% for opt in option %}
+    <option value="{{ opt }}"></option>
+  {% endfor %}
+  </datalist>
+</p>

@@ -1,4 +1,10 @@
 {% extends 'bootstrap/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <title>Make A Short URL</title>
+</head>
 {% block title %}
 MY F
 {% endblock %}
@@ -6,6 +12,23 @@ MY F
 
     {% block base_01 %}
     {% endblock %}
+
+<h1>Ввод данных</h1>
+<form action="shortenurl">
+    <label for="dl">Выпадающий список</label>
+    <input type="text" name="dl" value="">
+    <label for="shortcode">Enter Name</label>
+    <input type="text" name="shortcode" value="">
+    <input type="submit" value="Submit">
+</form>
+
+
 <h1>Base</h1>
 
 {% endblock %}
+
+
+
+
+
+</html>
