@@ -1,33 +1,10 @@
-from flask import Flask, render_template, url_for, redirect, request
-from flask_bootstrap import Bootstrap
-from flask_mysqldb import MySQL
-import yaml
-from config import Config
-'''
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from config import Config
-'''
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
+from flask import Flask, render_template, url_for, redirect, request, flash
+from app import app, mysql
+from app.forms import LoginForm
 
-
-#DB CONFIGURATION
-app.config.from_object(Config)
-db = yaml.load('db.yaml', Loader=yaml.Loader)
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '6439247185'
-app.config['MYSQL_DB'] = 'cockdb'
-mysql = MySQL(app)
-'''
-
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-'''
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
 
     cursor = mysql.connection.cursor()
@@ -72,5 +49,11 @@ def out():
     return render_template('out.html', option=list_)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data))
+        return redirect(url_for('index'))
+    return render_template('login.html', title='Sign In', form=form)

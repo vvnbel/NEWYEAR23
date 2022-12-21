@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+
+
+{% block title %}
+MY F
+{% endblock %}
+</head>
+{% block content %}
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('login') }}">Login</a>
+    {% block base_01 %}
+
+    {% endblock %}
+
+<h1>Ввод данных</h1>
+
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+<h1>Base</h1>
+
+{% endblock %}
+
+
+
+
+
+</html>
