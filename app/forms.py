@@ -4,7 +4,11 @@ from wtforms.validators import DataRequired, Email
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me', default=False)
     submit = SubmitField('Sign In')
+
+class ContactForm(FlaskForm):
+
+    submit = SubmitField('Do this')
+    submit2 = SubmitField('Do that')

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, flash
 from app import app, mysql
-from app.forms import LoginForm
+from app.forms import LoginForm, ContactForm
+import sys
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -57,3 +58,33 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
+
+@app.route('/button/')
+def button_clicked():
+    print('Hello world!', file=sys.stderr)
+    return redirect('/')
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    print('12345')
+    form = ContactForm()
+    if request.method == 'POST':
+        print('000')
+        '''
+            if form.submit.data:
+                pass
+            elif form.submit2.data:
+                pass
+        '''
+        if request.form['submit_button'] == 'Do Something':
+            print('123')
+        elif request.form['submit_button'] == 'Do Something Else':
+            print('234')
+        else:
+            pass # unknown
+    return render_template('contact.html', form=form)
+
+
+

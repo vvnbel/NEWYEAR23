@@ -4,8 +4,6 @@
 <head>
         <meta charset="UTF-8">
 
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('login') }}">Login</a>
 {% block title %}
 MY F
 {% endblock %}
@@ -13,6 +11,7 @@ MY F
 {% block content %}
     <a href="{{ url_for('index') }}">Home</a>
     <a href="{{ url_for('login') }}">Login</a>
+<a href="{{ url_for('contact') }}">Contact</a>
     {% block base_01 %}
 
     {% endblock %}
