@@ -63,7 +63,7 @@ def login():
 @app.route('/button/')
 def button_clicked():
     print('Hello world!', file=sys.stderr)
-    return redirect('/')
+    return redirect(url_for('index'))
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -78,9 +78,10 @@ def contact():
             elif form.submit2.data:
                 pass
         '''
-        if request.form['submit_button'] == 'Do Something':
+        if form.submit1.data:
             print('123')
-        elif request.form['submit_button'] == 'Do Something Else':
+            button_clicked()
+        elif form.submit2.data:
             print('234')
         else:
             pass # unknown

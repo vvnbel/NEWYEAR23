@@ -10,5 +10,5 @@ class LoginForm(FlaskForm):
 
 class ContactForm(FlaskForm):
 
-    submit = SubmitField('Do this')
+    submit1 = SubmitField('Do this')
     submit2 = SubmitField('Do that')
