@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, flash
 from app import app, mysql
 from app.forms import LoginForm, ContactForm
+from werkzeug.security import generate_password_hash
 import sys
 
 
@@ -18,8 +19,9 @@ def index():
     if request.method == 'POST':
         form = request.form
         name = form['name']
-        age = form['age']
+        age = form['password']
         cursor = mysql.connection.cursor()
+        age = generate_password_hash(age)
         cursor.execute("INSERT INTO employee(name, age) VALUES(%s, %s)", (name, age))
         mysql.connection.commit()
     return render_template('index.html')

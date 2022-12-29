@@ -12,3 +12,4 @@ class ContactForm(FlaskForm):
 
     submit1 = SubmitField('Do this')
     submit2 = SubmitField('Do that')
+
