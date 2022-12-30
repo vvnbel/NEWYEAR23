@@ -1,7 +1,8 @@
 from flask import Flask, render_template, url_for, redirect, request, flash
 from app import app, mysql
 from app.forms import LoginForm, ContactForm
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_bootstrap import Bootstrap
 import sys
 
 
@@ -20,9 +21,13 @@ def index():
         form = request.form
         name = form['name']
         age = form['password']
+
         cursor = mysql.connection.cursor()
         age = generate_password_hash(age)
         cursor.execute("INSERT INTO employee(name, age) VALUES(%s, %s)", (name, age))
+
+
+
         mysql.connection.commit()
     return render_template('index.html')
 
@@ -89,5 +94,12 @@ def contact():
             pass # unknown
     return render_template('contact.html', form=form)
 
+@app.route('/employees')
+def employees():
+    cursor = mysql.connection.cursor()
+    result_value = cursor.execute("SELECT * FROM employee")
+    if result_value > 0:
+        employees = cursor.fetchall()
 
-
+        #return str(check_password_hash(employees[0][1], '111111'))
+        return render_template('employees.html', employees=employees)

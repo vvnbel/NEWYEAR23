@@ -9,6 +9,7 @@ MY F
 {% endblock %}
 </head>
 {% block content %}
+    {% include '_navbar.html'%}
     <a href="{{ url_for('index') }}">Home</a>
     <a href="{{ url_for('login') }}">Login</a>
 <a href="{{ url_for('contact') }}">Contact</a>
