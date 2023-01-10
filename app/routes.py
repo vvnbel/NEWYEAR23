@@ -6,6 +6,9 @@ from flask_bootstrap import Bootstrap
 import sys
 
 
+ButtonPressed = 0
+
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -36,7 +39,29 @@ def index():
     return render_template('index.html')
 
 
-ButtonPressed = 0
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return render_template('register.html')
+
+
+@app.route('/blogs/<int:id>')
+def blogs():
+    return render_template('blogs.html', blog_id=id)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+
+@app.route('/write-blog/', methods=['GET', 'POST'])
+def write_blog():
+    return render_template('write-blog.html')
 
 
 @app.route('/formworkers', methods=['GET', 'POST'])
@@ -62,7 +87,7 @@ def out():
     list_ = [1111, 2222, 3333]
     return render_template('out.html', option=list_)
 
-
+'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -71,7 +96,7 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
-
+'''
 
 @app.route('/button/')
 def button_clicked():

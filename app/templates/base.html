@@ -14,7 +14,8 @@ MY F
     <a href="{{ url_for('login') }}">Login</a>
 <a href="{{ url_for('contact') }}">Contact</a>
     {% block base_01 %}
-
+        {% block sub_content %}
+        {% endblock %}
     {% endblock %}
 
 <h1>Ввод данных</h1>
