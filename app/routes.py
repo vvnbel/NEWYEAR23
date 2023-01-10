@@ -30,9 +30,9 @@ def index():
             password = generate_password_hash(password)
             cursor.execute("INSERT INTO employee(name, password) VALUES(%s, %s)", (name, password))
             mysql.connection.commit()
-            flash('успешно вторая таблица')
+            flash('успешно вторая таблица', 'success')
         except:
-            flash('не успешно')
+            flash('не успешно', 'danger')
     return render_template('index.html')
 
 
