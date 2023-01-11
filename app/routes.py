@@ -50,13 +50,33 @@ def register():
 
 
 @app.route('/blogs/<int:id>')
-def blogs():
+def blogs(id):
     return render_template('blogs.html', blog_id=id)
+
+
+@app.route('/my-blogs/')
+def my_blogs():
+    return render_template('my-blogs.html')
+
+
+@app.route('/edit-blog/', methods=['GET', 'POST'])
+def edit_blog():
+    return render_template('edit-blog.html')
+
+
+@app.route('/delete-blog/<int:id>', methods=['POST'])
+def delete_blog(id):
+    return 'Successfully Deleted'
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('login.html')
+
+
+@app.route('/logout/', methods=['GET', 'POST'])
+def logout():
+    return render_template('logout.html')
 
 
 @app.route('/write-blog/', methods=['GET', 'POST'])
@@ -87,6 +107,7 @@ def out():
     list_ = [1111, 2222, 3333]
     return render_template('out.html', option=list_)
 
+
 '''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -97,6 +118,7 @@ def login():
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 '''
+
 
 @app.route('/button/')
 def button_clicked():
